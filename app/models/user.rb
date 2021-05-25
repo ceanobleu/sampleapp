@@ -109,6 +109,7 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
                      .includes(:user, image_attachment: :blob)
     
+    ##ruby only method
     #part_of_feed = "relationships.follower_id = :id or microposts.user_id = :id"
     #Micropost.left_outer_joins(user: :followers)
     #         .where(part_of_feed, { id: id }).distinct
