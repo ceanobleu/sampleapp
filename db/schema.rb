@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_184912) do
+ActiveRecord::Schema.define(version: 2021_05_26_103647) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,9 +40,17 @@ ActiveRecord::Schema.define(version: 2021_05_23_184912) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "micropost_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index "\"micropost_id\", \"liked_at\"", name: "index_likes_on_micropost_id_and_liked_at"
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
+  end
+
   create_table "microposts", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
@@ -77,5 +85,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_184912) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "microposts"
   add_foreign_key "microposts", "users"
 end

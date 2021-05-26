@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :like]
   before_action :correct_user, only: :destroy
   
   def create
@@ -13,7 +13,7 @@ class MicropostsController < ApplicationController
       render 'static_pages/home'
     end
   end
-  
+
   def destroy
     @micropost.destroy
     flash[:success] = "Micropost deleted"
@@ -23,6 +23,29 @@ class MicropostsController < ApplicationController
       redirect_to request.referrer
     end
   end
+  
+  def like
+    @micropost = Micropost.find(params[:id])
+    p @micropost.likes
+    puts "------11"
+    puts "asdfasdfasd"
+    
+    # if @micropost.who_liked.nil?
+    #   puts "asdfasdf"
+    #   @micropost.who_liked = []
+    #   @micropost.save
+    # end
+    
+    # puts "------2"
+    # p @micropost
+    # if @micropost.who_liked.include? current_user.id
+    #   flash[:warning] = "You have already liked this post"
+    # else
+    #   @micropost.who_liked << current_user.id
+    #   @micropost.likes += 1
+    # end
+  end
+    
   
   private 
   

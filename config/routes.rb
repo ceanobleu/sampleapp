@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  #post '/microposts/:id', to: 'microposts#like'
+  post '/microposts/:id', to: 'likes#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users do
     member do
