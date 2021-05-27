@@ -1,15 +1,11 @@
-<h1>Sample App</h1>
+<h1>CEAPOST</h1>
 
 <p>Hi <%= @user.name %>,</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+Welcome to the CEAPOST! Click on the link below to activate your account:
 </p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token,
 email: @user.email) %>
 
-<p>
-To unsubscribe from this mail list, click this <%= link_to "link", edit_account_activation_url(@user.activation_token,
-email: @user.email) %>.
-</p>
